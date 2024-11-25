@@ -4,7 +4,7 @@ import git
 
 
 def email_from_author_name(author_name):
-    return f'{author_name}@some-domain.com'
+    return f"{author_name}@some-domain.com"
 
 
 def create_repo(repo_dirpath):
@@ -34,48 +34,48 @@ def commit_files(repo, author, filenames, message):
 
 
 def create_file(repo, filename, content):
-    '''
-    create a new file
-    '''
+    """
+    Create a new file.
+    """
     filepath = pathlib.Path(repo.working_tree_dir, filename)
     if filepath.exists():
-        raise ValueError(f'File {filepath} already exists')
+        raise ValueError(f"File {filepath} already exists")
 
-    if not content.endswith('\n'):
-        content += '\n'
+    if not content.endswith("\n"):
+        content += "\n"
 
-    with open(filepath, 'w') as file:
+    with open(filepath, "w") as file:
         file.write(content)
 
 
 def modify_file(repo, filename, content, overwrite=False):
-    '''
-    modify an existing file (by either appending to or overwriting it)
-    '''
+    """
+    Modify an existing file (by either appending to or overwriting it).
+    """
     filepath = pathlib.Path(repo.working_tree_dir, filename)
     if not filepath.exists():
-        raise ValueError(f'File {filepath} does not exist')
+        raise ValueError(f"File {filepath} does not exist")
 
-    if not content.endswith('\n'):
-        content += '\n'
+    if not content.endswith("\n"):
+        content += "\n"
 
-    mode = 'w' if overwrite else 'a'
+    mode = "w" if overwrite else "a"
     with open(filepath, mode) as file:
         file.write(content)
 
 
 def create_file_and_commit(repo, author, filename, content, message):
-    '''
-    create a new file and commit it
-    '''
+    """
+    Create a new file and commit it.
+    """
     create_file(repo, filename, content)
     commit_file(repo, author, filename, message)
 
 
 def modify_file_and_commit(repo, author, filename, content, message, overwrite=False):
-    '''
-    modify an existing file (by either appending to or overwriting it)
-    and commit the change
-    '''
+    """
+    Modify an existing file (by either appending to or overwriting it)
+    and commit the change.
+    """
     modify_file(repo, filename, content, overwrite=overwrite)
     commit_file(repo, author, filename, message)
