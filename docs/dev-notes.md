@@ -1,9 +1,8 @@
-# Dev docs/notes
+# Development notes
 
 ## TODOs
-- add type hints and mypy
-- create a minimal realistic example of a merge conflict that can be applied to any file in any pair of repos
-
+- add type hints and mypy.
+- create a minimal realistic example of a merge conflict that can be applied to any file in any pair of repos.
 
 ## Troublesome real-world scenarios
 ### Updating local branches after force-pushed changes
@@ -13,7 +12,7 @@
 ### Rebasing a local feature branch on main after a squash merge
 The feature branch retains the individual commits that were squashed during the merge, so naive interactive rebasing involves resolving conflicts as each of the squashed commits is replayed on top of main. 
 
-## Conceptual questions/issues
+## Conceptual questions
 ### Remote-tracking branches
 How are remote-tracking branches different from 'normal' local branches? Can they be set up manually (e.g. without using `git push --set-upstream` or `git checkout --track origin/$some_branch`)?
 

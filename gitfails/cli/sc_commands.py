@@ -38,10 +38,13 @@ def create_scenario(name, new):
         while os.path.exists(dirpath(ind)):
             ind += 1
 
+    if not new and os.path.exists(dirpath(ind)):
+        click.echo(f"Warning: overwriting scenario '{name}' at {dirpath(ind)}")
+
     ScenarioClass = scenario_classes[class_name]
     scenario = ScenarioClass(dirpath(ind), overwrite=(not new))
     scenario.construct()
-    click.echo('Created scenario %s at %s' % (name, dirpath(ind)))
+    click.echo(f"Created scenario '{name}' at {dirpath(ind)}")
 
 
 @click.command()
@@ -55,4 +58,4 @@ def delete_scenarios():
         if subdirpath.is_dir():
             shutil.rmtree(subdirpath)
 
-    click.echo('Removed all scenarios from %s' % config['working_dir'])
+    click.echo(f"Removed all scenarios from {config['working_dir']}")
